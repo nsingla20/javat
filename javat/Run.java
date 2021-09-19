@@ -3,6 +3,7 @@ package javat;
 
 import javat.Style.*;
 import java.io.*;
+import java.nio.file.*;
 import java.util.*;
 public class Run {
 	//check1
@@ -16,8 +17,9 @@ public class Run {
 	private static boolean log=false;
 	public static Process music;
 	public static final String musicPlayer=System.getenv("ProgramFiles")+"/VideoLAN/VLC";
-	public static final String musicFile="D:/music/best.xspf";
+	public static String musicFile=Paths.get("../music/Break.mp3").toAbsolutePath().normalize().toString();
 	public static void main(String args[]) {
+		
 		(Runtime.getRuntime()).addShutdownHook(new terminate("tinda@123"));
 		Thread.currentThread().setName("Run");
 		//tour.wai("Registering");
@@ -39,7 +41,7 @@ public class Run {
 		boolean first = true;
 		
 		
-		
+		//tour.wai(musicFile);
 			
 		
 		
@@ -50,7 +52,8 @@ public class Run {
 			try{
 			switch(javat.Style.Ques.YN("Would you like to launch startup music (yes or no)")){
 				case 0:if(!(music==null))if(music.isAlive())music.destroy();break;
-				case 1:if(music==null||!music.isAlive())music=(Runtime.getRuntime()).exec(musicPlayer+"/vlc.exe"+" file:///"+musicFile+" --qt-start-minimized -L ");
+				case 1:
+				if(music==null||!music.isAlive())music=(Runtime.getRuntime()).exec("\""+musicPlayer+"/vlc.exe\""+" file:///"+musicFile+" --qt-start-minimized -L ");
 			}
 			}catch(Exception e){tour.wai("ERROR! while playing music"+e.toString());}
 
@@ -79,7 +82,9 @@ public class Run {
 	}
 	
 
-	
+	// static{
+	// 	System.out.println(Paths.get("../.").toAbsolutePath().normalize().toString());
+	// }
 
 
 

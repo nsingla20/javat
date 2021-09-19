@@ -1,1 +1,5 @@
 *.*
+!javat
+!*.bat
+!music/*
+!balcon/*
